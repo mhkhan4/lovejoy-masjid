@@ -1,3 +1,6 @@
+<!-- Shift + command + F -->
+<!-- Shift + cntrl + F -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +38,7 @@
       }
       .name_date {
         background-color: black;
-        color: white;
+        color: #ffd700;
         font-weight: 800;
       }
 
@@ -44,100 +47,101 @@
       }
       .sunrise_sunset {
         background-color: white;
-        color: black;
+        color: blue;
         font-weight: 800;
         font-family: sans-serif;
       }
-      .footer{
-          width: 95%;
-          background-color: rgb(45, 158, 179);
-          margin: auto;
+      .footer {
+        width: 95%;
+        background-color: rgb(45, 158, 179);
+        margin: auto;
       }
     </style>
 
     <h1>LOVEJOY MASJID</h1>
     <div class="row justify-content-center">
       <button type="button" class="btn btn-info address">
-        1107 E Lovejoy St, Buffalo, NY 14206. Cellphone: (718) 290-6538
+        1107 E Lovejoy St, Buffalo, NY 14206. Phone: (718)-290-6538(text only)
       </button>
     </div>
+    <br />
 
     <div class="container name_date">
       <div class="row">
         <div class="col">
-          <p id="ct5"></p>
+          <h2 id="ct5"></h2>
         </div>
         <div class="col">
-          <p id="islamic_date"></p>
+          <h2 id="islamic_date"></h2>
         </div>
       </div>
     </div>
+    <br />
 
     <div class="container sunrise_sunset">
       <div class="row">
         <div class="col">
-          <p id="dawn"></p>
+          <h5 id="dawn"></h5>
         </div>
         <div class="col">
-          <p id="sunrise"></p>
+          <h5 id="sunrise"></h5>
         </div>
         <div class="col">
-          <p id="zawal"></p>
+          <h5 id="zawal"></h5>
         </div>
       </div>
     </div>
+    <br />
 
-    <div class = "footer">
-    <table class="table table-bordered table-dark ">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">وقت البداية / Beginning time</th>
-          <th scope="col">وقت الإقامة / Iqamah time</th>
-          <!-- <th scope="col">End</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">فجر / FAJR</th>
-          <td id="fajr_s"></td>
-          <td id="fajr_i"></td>
-          <!-- <td id="fajr_e"></td> -->
-        </tr>
-        <tr>
-          <th scope="row">ظهر / ZUHR</th>
-          <td id="zuhr_s"></td>
-          <td id="zuhr_i"></td>
-          <!-- <td id="zuhr_e"></td> -->
-        </tr>
-        <tr>
-          <th scope="row">عصر / ASR</th>
-          <td id="asr_s"></td>
-          <td id="asr_i"></td>
-          <!-- <td id="asr_e"></td> -->
-        </tr>
-        <tr>
-          <th scope="row">مغرب / MAGHRIB</th>
-          <td id="maghrib_s"></td>
-          <td id="maghrib_i"></td>
-          <!-- <td id="maghrib_e"></td> -->
-        </tr>
-        <tr>
-          <th scope="row">عشاء /ISHA</th>
-          <td id="esha_s"></td>
-          <td id="esha_i"></td>
-          <!-- <td id="esha_e"></td> -->
-        </tr>
-      </tbody>
-    </table>
+    <div class="footer">
+      <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"><h2>وقت البداية / Beginning time</h2></th>
+            <th scope="col"><h2>وقت الإقامة / Iqamah time</h2></th>
+            <!-- <th scope="col">End</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><h2>فجر / FAJR</h2></th>
+            <td><h2 id="fajr_s"></h2></td>
+            <td><h2 id="fajr_i"></h2></td>
+            <!-- <td id="fajr_e"></td> -->
+          </tr>
+          <tr>
+            <th scope="row"><h2>ظهر / ZUHR</h2></th>
+            <td><h2 id="zuhr_s"></h2></td>
+            <td><h2 id="zuhr_i"></h2></td>
+            <!-- <td id="zuhr_e"></td> -->
+          </tr>
+          <tr>
+            <th scope="row"><h2>عصر / ASR</h2></th>
+            <td><h2 id="asr_s"></h2></td>
+            <td><h2 id="asr_i"></h2></td>
+            <!-- <td id="asr_e"></td> -->
+          </tr>
+          <tr>
+            <th scope="row"><h2>مغرب / MAGHRIB</h2></th>
+            <td><h2 id="maghrib_s"></h2></td>
+            <td><h2 id="maghrib_i"></h2></td>
+            <!-- <td id="maghrib_e"></td> -->
+          </tr>
+          <tr>
+            <th scope="row"><h2>عشاء /ISHA</h2></th>
+            <td><h2 id="esha_s"></h2></td>
+            <td><h2 id="esha_i"></h2></td>
+            <!-- <td id="esha_e"></td> -->
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="container footer">
-      <div class="row" >
-        <div class="col">
-          <h2 footer id="msg"></h2>
-        </div>
-      </div>
+    <div class="footer">
+      <marquee behavior="scroll" direction="right"
+        ><h2 footer id="msg"></h2
+      ></marquee>
     </div>
 
     <script>
@@ -597,20 +601,14 @@
         var x1 = time_for_today["Day"] + " - ";
         x1 += x.getMonth() + 1 + "/" + x.getDate() + "/" + x.getFullYear();
         var hours = x.getHours();
-        if( x.getHours() > 12 ){
-            x1 += " - " + (hours - 12);
+        if (x.getHours() > 12) {
+          x1 += " - " + (hours - 12);
+        } else if (x.getHours() === 0) {
+          x1 += " - " + 12;
+        } else {
+          x1 += " - " + x.getHours();
         }
-        else{
-            x1 += " - " + x.getHours();
-        }
-        x1 =
-          x1 +
-          ":" +
-          x.getMinutes() +
-          ":" +
-          x.getSeconds() +
-          ":" +
-          ampm;
+        x1 = x1 + ":" + x.getMinutes() + ":" + x.getSeconds() + ":" + ampm;
         document.getElementById("ct5").innerHTML = x1;
         display_c5();
       }
@@ -628,46 +626,54 @@
       document.getElementById(
         "sunrise"
       ).innerHTML = `شروق / Sunrise : ${formation(time_for_today["Shurooq"])}`;
-      document.getElementById(
-        "zawal"
-      ).innerHTML = `زوال / Zawal : ${formation(time_for_today["Zawal"])}->${formation(time_for_today["ZawE"])}`;
-
-  
+      document.getElementById("zawal").innerHTML = `زوال / Zawal : ${formation(
+        time_for_today["Zawal"]
+      )}->${formation(time_for_today["ZawE"])}`;
 
       //fajr
-      document.getElementById(
-        "fajr_s"
-      ).innerHTML = `${formation(time_for_today["Subah"])}`;
-      document.getElementById("fajr_i").innerHTML = `${formation(time_for_today["Fajr"])}`;
+      document.getElementById("fajr_s").innerHTML = `${formation(
+        time_for_today["Subah"]
+      )}`;
+      document.getElementById("fajr_i").innerHTML = `${formation(
+        time_for_today["Fajr"]
+      )}`;
       // document.getElementById("fajr_e").innerHTML = `${time_for_today["Shurooq"]}`;
       //zuhr
-      document.getElementById("zuhr_s").innerHTML = formation(`${time_for_today["ZawE"]}`);
-      document.getElementById("zuhr_i").innerHTML = formation(`${time_for_today["Zuhr"]}`);
+      document.getElementById("zuhr_s").innerHTML = formation(
+        `${time_for_today["ZawE"]}`
+      );
+      document.getElementById("zuhr_i").innerHTML = formation(
+        `${time_for_today["Zuhr"]}`
+      );
       // document.getElementById("zuhr_e").innerHTML = `${time_for_today["Asr_t"]}`;
       //asar
-      document.getElementById("asr_s").innerHTML = formation(`${time_for_today["Asr_t"]}`);
-      document.getElementById(
-        "asr_i"
-      ).innerHTML = formation(`${time_for_today["Asr_Iqa"]}`);
+      document.getElementById("asr_s").innerHTML = formation(
+        `${time_for_today["Asr_t"]}`
+      );
+      document.getElementById("asr_i").innerHTML = formation(
+        `${time_for_today["Asr_Iqa"]}`
+      );
       // document.getElementById("asr_e").innerHTML = `${time_for_today["Maghrib"]}`;
       //maghrib
-      document.getElementById(
-        "maghrib_s"
-      ).innerHTML = formation(`${time_for_today["Maghrib"]}`);
-      document.getElementById("maghrib_i").innerHTML = "+5 minutes";
+      document.getElementById("maghrib_s").innerHTML = formation(
+        `${time_for_today["Maghrib"]}`
+      );
+      document.getElementById("maghrib_i").innerHTML = "+2 minutes";
       // document.getElementById("esha_e").innerHTML = `${time_for_today["Shurooq"]}`;
       //Esha
-      document.getElementById(
-        "esha_s"
-      ).innerHTML = formation(`${time_for_today["Isha_F"]}`);
-      document.getElementById(
-        "esha_i"
-      ).innerHTML = formation(`${time_for_today["Isha_Iqam"]}`);
+      var esha_time = parseInt(time_for_today["Isha_F"].split(":")[1]) + 1;
+      esha_time = `${parseInt(
+        time_for_today["Isha_F"].split(":")[0]
+      )}:${esha_time}`;
+      document.getElementById("esha_s").innerHTML = formation(`${esha_time}`);
+      document.getElementById("esha_i").innerHTML = formation(
+        `${time_for_today["Isha_Iqam"]}`
+      );
       // document.getElementById("esha_e").innerHTML = `${time_for_today["Subah"]}`;
       if (time_for_today["Message"] === "") {
         document.getElementById(
           "msg"
-        ).innerHTML = `Also find timing in Masjidi App`;
+        ).innerHTML = `** Also find timing in "Masjidi App" **`;
       } else {
         document.getElementById(
           "msg"
@@ -677,9 +683,9 @@
       // function to make the time 12 format
       function formation(time) {
         // Check correct time format and split into components
-        var firstStr = time.split(':')[0];
-        if (parseInt(firstStr) < 12){
-            return time + ' AM';
+        var firstStr = time.split(":")[0];
+        if (parseInt(firstStr) < 12) {
+          return time + " AM";
         }
 
         time = time
@@ -694,6 +700,31 @@
         }
         return time.join(""); // return adjusted time or original string
       }
+
+      // refreshing the browser at certain time
+      function refreshAt(hours, minutes, seconds) {
+        var now = new Date();
+        var then = new Date();
+
+        if (
+          now.getHours() > hours ||
+          (now.getHours() == hours && now.getMinutes() > minutes) ||
+          (now.getHours() == hours &&
+            now.getMinutes() == minutes &&
+            now.getSeconds() >= seconds)
+        ) {
+          then.setDate(now.getDate() + 1);
+        }
+        then.setHours(hours);
+        then.setMinutes(minutes);
+        then.setSeconds(seconds);
+
+        var timeout = then.getTime() - now.getTime();
+        setTimeout(function () {
+          window.location.reload(true);
+        }, timeout);
+      }
+      refreshAt(23, 59, 59);
     </script>
   </body>
 </html>
