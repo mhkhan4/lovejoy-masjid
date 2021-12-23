@@ -48,6 +48,11 @@
         font-weight: 800;
         font-family: sans-serif;
       }
+      .footer{
+          width: 95%;
+          background-color: rgb(45, 158, 179);
+          margin: auto;
+      }
     </style>
 
     <h1>LOVEJOY MASJID</h1>
@@ -82,7 +87,8 @@
       </div>
     </div>
 
-    <table class="table table-bordered table-dark">
+    <div class = "footer">
+    <table class="table table-bordered table-dark ">
       <thead>
         <tr>
           <th scope="col"></th>
@@ -93,40 +99,41 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">فجر / Fajr</th>
+          <th scope="row">فجر / FAJR</th>
           <td id="fajr_s"></td>
           <td id="fajr_i"></td>
           <!-- <td id="fajr_e"></td> -->
         </tr>
         <tr>
-          <th scope="row">ظهر / Zuhr</th>
+          <th scope="row">ظهر / ZUHR</th>
           <td id="zuhr_s"></td>
           <td id="zuhr_i"></td>
           <!-- <td id="zuhr_e"></td> -->
         </tr>
         <tr>
-          <th scope="row">عصر / Asr</th>
+          <th scope="row">عصر / ASR</th>
           <td id="asr_s"></td>
           <td id="asr_i"></td>
           <!-- <td id="asr_e"></td> -->
         </tr>
         <tr>
-          <th scope="row">مغرب / Maghrib</th>
+          <th scope="row">مغرب / MAGHRIB</th>
           <td id="maghrib_s"></td>
           <td id="maghrib_i"></td>
           <!-- <td id="maghrib_e"></td> -->
         </tr>
         <tr>
-          <th scope="row">عشاء /Isha</th>
+          <th scope="row">عشاء /ISHA</th>
           <td id="esha_s"></td>
           <td id="esha_i"></td>
           <!-- <td id="esha_e"></td> -->
         </tr>
       </tbody>
     </table>
+    </div>
 
-    <div class="container">
-      <div class="row">
+    <div class="container footer">
+      <div class="row" >
         <div class="col">
           <h2 footer id="msg"></h2>
         </div>
@@ -690,3 +697,4 @@
     </script>
   </body>
 </html>
+
