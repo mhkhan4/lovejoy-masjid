@@ -649,9 +649,9 @@
           x1 = x1 + ":" + x.getMinutes();
         }
         if (x.getSeconds() < 10) {
-          x1 = x1 + ":" + "0" + x.getSeconds() + ":" + ampm;
+          x1 = x1 + ":" + "0" + x.getSeconds() + ampm;
         } else {
-          x1 = x1 + ":" + x.getSeconds() + ":" + ampm;
+          x1 = x1 + ":" + x.getSeconds() + ampm;
         }
 
         document.getElementById("ct5").innerHTML = x1;
