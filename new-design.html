@@ -112,7 +112,11 @@
     <!-- if u want to change the hijri date change here -->
   
     <!-- <h1 id = day style= " margin-left: 75%; font-size: 40px; "> put hijir date here</h1> -->
-    <h2 id = hijriDate style="float: right; font-size: 25px; margin-right: 5%; color: black;"></h2>
+    <div style="margin-right: 5%; float: right; color: black;">
+        <h2 id = day style = "font-size: 25px;"></h2>
+        <h2 id = hijriDate style = "font-size: 25px;" ></h2>
+       
+    </div>
 
     <br><br><br><br><br><br><br><br>
 
@@ -120,7 +124,7 @@
   <!-- لبجي مسجد -->
   <h1 style="font-family:'Times New Roman', Times, serif; font-size: 70px;">بفلو مركز مسجد</h1>
   <h1>BUFFALO MARKAZ MASJID</h1>
-  <div style="text-align: center; margin-bottom: 75px;"> 
+  <div style="text-align: center; margin-bottom: 90px;"> 
     <h4>115 Woltz Avenue, Buffalo, NY 14212. Tel: (716)-893-4100</h4>
   </div>
 
@@ -707,7 +711,8 @@
 
       //update day
       days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-      document.getElementById("date").innerHTML = real_date + ` (${days[x.getDay()]})`;
+      document.getElementById("date").innerHTML = real_date;
+      document.getElementById("day").innerHTML = `${days[x.getDay()]}`;
      
     //   document.getElementById("ct5").innerHTML = x1;
       display_c5();
@@ -757,14 +762,15 @@
     document.getElementById("maghrib_s").innerHTML = formation(
       `${time_for_today["Maghrib"]}`
     );
-    document.getElementById("maghrib_i").innerHTML = "+2 minutes";
+    document.getElementById("maghrib_i").innerHTML = "+5 minutes";
     // document.getElementById("esha_e").innerHTML = `${time_for_today["Shurooq"]}`;
     //Esha
-    var esha_time = parseInt(time_for_today["Isha_F"].split(":")[1]) + 1;
-    esha_time = `${parseInt(
-      time_for_today["Isha_F"].split(":")[0]
-    )}:${esha_time}`;
-    document.getElementById("esha_s").innerHTML = formation(`${esha_time}`);
+    // changed the time
+    // var esha_time = parseInt(time_for_today["Isha_F"].split(":")[1]) + 1;
+    // esha_time = `${parseInt(
+    //   time_for_today["Isha_F"].split(":")[0]
+    // )}:${esha_time}`;
+    document.getElementById("esha_s").innerHTML = formation(`${time_for_today["Isha_F"]}`);
     document.getElementById("esha_i").innerHTML = formation(
       `${time_for_today["Isha_Iqam"]}`
     );
