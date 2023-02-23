@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Salat time</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+        body { 
+            background-image: url('greenBackground.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100%;
+        }
+        * {
+            font-size: 120%;
+        }
+        @-webkit-keyframes yellow-fade {
+        from {
+            background: red;
+        }
+        to {
+            background: #fff;
+        }
+        }
+        @-moz-keyframes yellow-fade {
+        from {
+            background: red;
+        }
+        to {
+            background: #fff;
+        }
+        }
+        @keyframes yellow-fade {
+        from {
+            background: red;
+        }
+        to {
+            background: #fff;
+        }
+        }
+        .fade-it .msg {
+        /* padding: 10px; */
+        text-align: center;
+        -webkit-animation: yellow-fade 1s linear infinite;
+        -moz-animation: yellow-fade 1s linear infinite;
+        -o-animation: yellow-fade 1s linear infinite;
+        animation: yellow-fade 1s linear infinite;
+        }
+        .fade-it .no-fade {
+        text-align: center;
+        }
+    </style>
+</head>
+<body>
+	<header>
+		<h1 style="
+        text-align: center;
+        font-weight:900;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        -webkit-text-stroke: 2px #DAA520;
+        color:lightgray;">LOVEJOY MASJID</h1>
+
+        <div style="float: right">
+            <h2 style="color: rgb(186, 74, 74)" id = date></h2>
+            <h2 style="color: rgb(186, 74, 74)" id = hijriDate></h2>
+        </div>
+
+        <div style="float: left">
+            <h1 style="color: rgb(186, 74, 74)" id = time></h1>
+            <h2 style="color: rgb(186, 74, 74)" id = sunrise></h2>
+            <!-- <h2 style="color: rgb(213, 213, 25);" id = zawal></h2> -->
+        </div>
+	</header>
+	<main>
+        <table class="table" style="width: 65%;margin-left: 20%;margin-top: 170px;">
+            <thead>
+              <tr style="color:aquamarine;">
+                <th scope="col"><h2>الصلاة / Prayers</h2></th>
+                <th scope="col"><h2>وقت البداية / Beginning time</h2></th>
+                <th scope="col"><h2>وقت الإقامة / Iqamah time</h2></th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr>
+                <th style="color:rgb(205, 192, 173)" scope="row"><h2>فجر / FAJR</h2></th>
+                <td><h2 style="color:aliceblue" id="Fajr Adhan"></h2></td>
+                <td><h2 style="color:aliceblue" id="Fajr Iqamah"></h2></td>
+              </tr>
+              <tr>
+                <th style="color:rgb(205, 192, 173)" scope="row"><h2>ظهر / ZUHR</h2></th>
+                <td><h2 style="color:aliceblue" id="Dhuhr Adhan"></h2></td>
+                <td><h2 style="color:aliceblue" id="Dhuhr Iqamah"></h2></td>
+              </tr>
+              <tr>
+                <th style="color:rgb(205, 192, 173)" scope="row"><h2>عصر / ASR</h2></th>
+                <td><h2 style="color:aliceblue" id="Asr Adhan"></h2></td>
+                <td><h2 style="color:aliceblue" id="Asr Iqamah"></h2></td>
+              </tr>
+              <tr>
+                <th style="color:rgb(205, 192, 173)" scope="row"><h2>مغرب / MAGHRIB</h2></th>
+                <td><h2 style="color:aliceblue" id="Maghrib Adhan"></h2></td>
+                <td><h2 style="color:aliceblue" id="Maghrib Iqamah"></h2></td>
+              </tr>
+              <tr>
+                <th style="color:rgb(205, 192, 173)" scope="row"><h2>عشاء /ISHA</h2></th>
+                <td><h2 style="color:aliceblue" id="Isha Adhan"></h2></td>
+                <td><h2 style="color:aliceblue" id="Isha Iqamah"></h2></td>
+              </tr>
+            </tbody>
+        </table>
+
+        <div class = "fade-it" style="color:rgb(85, 23, 23); background-color: rgb(47, 119, 47, 0.1); margin: auto;">
+            <marquee behavior="scroll" scrollamount="4" direction="right">
+                <h2 footer class="no-fade"></h2>
+                <h2 footer class="msg"></h2>
+            </marquee>
+        </div>
+    </main>
+
+
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://127.0.0.1:8080/FullYearTiming_LovejoyMasjid.csv');
+        xhr.onload = () => {
+        var data = xhr.responseText;
+        var time_for_today;
+        function CSVstring_to_Array(data, delimiter = ",") {
+            const titles = data.slice(0, data.indexOf("\n")).split(delimiter);
+            const titleValues = data.slice(data.indexOf("\n") + 1).split("\n");
+            const ansArray = titleValues.map(function (v) {
+            const values = v.split(delimiter);
+            const storeKeyValue = titles.reduce(function (obj, title, index) {
+                obj[title] = values[index];
+                return obj;
+            }, {});
+            return storeKeyValue;
+            });
+
+            return ansArray;
+        }
+
+        //current date
+        newData = CSVstring_to_Array(data);
+        const now = new Date();
+        const currentDay = now.getDate();
+        const currentMonth = now.getMonth() + 1;
+
+        //time_for_today will have current timing
+        for (var i = 0; i < newData.length; i++) {
+            if (newData[i]["Day"] == currentDay && newData[i]["Month"] == currentMonth) {
+            time_for_today = newData[i];
+            }
+        }
+
+        //converting date to hijri date
+        const hijriFormatter = new Intl.DateTimeFormat('en-US-u-ca-islamic', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        const hijriDate = hijriFormatter.format(now);
+
+        
+        document.getElementById("hijriDate").innerHTML = `${hijriDate}`;
+
+        //convert the date 12 hour format
+
+        const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+        };
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+        const date = formatter.format(now);
+
+        document.getElementById("date").innerHTML = `${date}`;
+
+        //time
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        document.getElementById("time").innerHTML = `${timeString}`;
+
+        //sunrise
+        document.getElementById("sunrise").innerHTML = `شروق / Sunrise: ${formation(
+          time_for_today["Shouruq"]
+        )}`;
+
+        //fajr
+        document.getElementById("Fajr Adhan").innerHTML = `${formation(
+            time_for_today["Fajr Adhan"]
+        )}`;
+        document.getElementById("Fajr Iqamah").innerHTML = `${formation(
+            time_for_today["Fajr Iqamah"]
+        )}`;
+    
+        //zuhr
+        document.getElementById("Dhuhr Adhan").innerHTML = formation(
+            `${time_for_today["Dhuhr Adhan"]}`
+        );
+        document.getElementById("Dhuhr Iqamah").innerHTML = formation(
+            `${time_for_today["Dhuhr Iqamah"]}`
+        );
+   
+        //asar
+        document.getElementById("Asr Adhan").innerHTML = formation(
+            `${time_for_today["Asr Adhan"]}`
+        );
+        document.getElementById("Asr Iqamah").innerHTML = formation(
+            `${time_for_today["Asr Iqamah"]}`
+        );
+
+        //maghrib
+        document.getElementById("Maghrib Adhan").innerHTML = formation(
+            `${time_for_today["Maghrib Adhan"]}`
+        );
+        document.getElementById("Maghrib Iqamah").innerHTML = formation(
+            `${time_for_today["Maghrib Iqamah"]}`
+        );
+
+        //Isha
+        document.getElementById("Isha Adhan").innerHTML = formation(`${time_for_today["Isha Adhan"]}`);
+        document.getElementById("Isha Iqamah").innerHTML = formation(
+            `${time_for_today["Isha Iqamah"]}`
+        );
+
+        console.log(time_for_today);
+
+        //fade
+        if (time_for_today["Info"] === "") {
+          var y = document.getElementsByClassName("no-fade");
+          y[0].innerHTML = `** Assalamu Alaikum Wa-rahmatullah  **`;
+        } else {
+            var x = document.getElementsByClassName("msg");
+            x[0].innerHTML = `${time_for_today["Info"]}`;
+        }
+
+        // function to make the time 12 format
+        function formation(time) {
+            // Check correct time format and split into components
+            var firstStr = time.split(":")[0];
+            if (parseInt(firstStr) < 12) {
+            return time + " AM";
+            }
+
+            time = time
+            .toString()
+            .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+            if (time.length > 1) {
+            // If time format correct
+            time = time.slice(1); // Remove full string match value
+            time[5] = +time[0] < 12 ? " AM" : " PM"; // Set AM/PM
+            time[0] = +time[0] % 12 || 12; // Adjust hours
+            }
+            return time.join(""); // return adjusted time or original string
+        }
+
+        
+
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
