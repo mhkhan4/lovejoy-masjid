@@ -10,9 +10,11 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
+
         body { 
-            background-image: url('greenBackground.jpg');
+            background-image: url('/image');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -69,7 +71,7 @@
 
         <div style="float: right">
             <h2 style="color:beige" id = date></h2>
-            <h2 style="color: beige" id = hijriDate></h2>
+            <h2 style="color: beige" id = hijriDate>{{date.hijriDate}}</h2>
         </div>
 
         <div style="float: left">
@@ -127,10 +129,10 @@
 
 
     <script>
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://127.0.0.1:8080/fixed.csv');
-        xhr.onload = () => {
-        var data = xhr.responseText;
+       fetch('/salahTime')
+        .then(response => response.json())
+        .then(data => {
+            data = data.time;
         var time_for_today;
         function CSVstring_to_Array(data, delimiter = ",") {
             const titles = data.slice(0, data.indexOf("\n")).split(delimiter);
@@ -161,16 +163,19 @@
         }
 
         //converting date to hijri date
-        const hijriFormatter = new Intl.DateTimeFormat('en-US-u-ca-islamic', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
+        // const hijriFormatter = new Intl.DateTimeFormat('en-US-u-ca-islamic', {
+        //     day: 'numeric',
+        //     month: 'long',
+        //     year: 'numeric'
+        // });
 
-        const hijriDate = hijriFormatter.format(now);
+        // const hijriDate = hijriFormatter.format(now);
+        // fetch the Hijri calendar from the Pakistan Hilal Committee's website
 
         
-        document.getElementById("hijriDate").innerHTML = `${hijriDate}`;
+
+
+        
 
         //convert the date 12 hour format
 
@@ -268,8 +273,8 @@
         location.reload();
         }, 60 * 60 * 1000); // 60 minutes * 60 seconds * 1000 milliseconds
 
-        };
-        xhr.send();
+    });
+        
     </script>
 </body>
 </html>

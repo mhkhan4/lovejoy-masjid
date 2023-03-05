@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" http-equiv="refresh" content="3600" />
+  <title>Salah time</title>
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  <style>
+      
+    /* if it is big screen try svg version */
+    body { 
+      background-image: url('background.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      min-height: 100%;
+    }
+
+    th {
+        text-align: center;
+        font-weight: 800;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+      td {
+        text-align: center;
+        font-weight: bold;
+      }
+   
+
+    h1 {
+    text-align: center;
+    font-weight:900;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-text-stroke: 2px #DAA520;
+    color:black;
+    }
+    .footer {
+        width: 75%;
+        margin: auto;
+      }
+    /* div blinking */
+    * {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@-webkit-keyframes yellow-fade {
+  from {
+    background: red;
+  }
+  to {
+    background: #fff;
+  }
+}
+@-moz-keyframes yellow-fade {
+  from {
+    background: red;
+  }
+  to {
+    background: #fff;
+  }
+}
+@keyframes yellow-fade {
+  from {
+    background: red;
+  }
+  to {
+    background: #fff;
+  }
+}
+.fade-it .msg {
+  /* padding: 10px; */
+  text-align: center;
+  -webkit-animation: yellow-fade 1s linear infinite;
+  -moz-animation: yellow-fade 1s linear infinite;
+  -o-animation: yellow-fade 1s linear infinite;
+  animation: yellow-fade 1s linear infinite;
+}
+.fade-it .no-fade {
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+  <!-- لبجي مسجد -->
+  <h1 style="margin-top: 40px;">LOVEJOY MASJID</h1>
+  <div style="text-align: center; margin-bottom: 90px;"> 
+    <h4>1107 E Lovejoy St, Buffalo, NY 14206</h4>
+  </div>
+    <!-- time -->
+    
+    <h2 id = time style="margin-top: 20px; float: left; margin-left: 5%; font-size: 55px; color:black "></h1>
+
+    <h2 id = date style="margin-top: 20px; float: right; margin-right: 5%; font-size: 55px; color: black"></h1>
+
+    <!-- sunrise / sunset -->
+
+    <div style="margin-left: 5%; float: left; color:black;  ">
+        <h4 id = sunrise style="font-size:25px"></h4>
+        <h4 id = zawal style="font-size:25px"></h4>
+    </div>
+
+    <!-- if u want to change the hijri date change here -->
+    <div style="margin-right: 5%; float: right; color: black;">
+        <h2 id = day style = "font-size: 25px;"></h2>
+        <h2 id = hijriDate style = "font-size: 25px;" ></h2>
+    </div>
+
+
+  <div class="footer">
+  <table class="table">
+    <thead>
+      <tr style="color:darkcyan;">
+        <th scope="col"><h2>الصلاة / Prayers</h2></th>
+        <th scope="col"><h2>وقت البداية / Beginning time</h2></th>
+        <th scope="col"><h2>وقت الإقامة / Iqamah time</h2></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row"><h2>فجر / FAJR</h2></th>
+        <td><h2 id="fajr_s"></h2></td>
+        <td><h2 id="fajr_i"></h2></td>
+        <!-- <td id="fajr_e"></td> -->
+      </tr>
+      <tr>
+        <th scope="row"><h2>ظهر / ZUHR</h2></th>
+        <td><h2 id="zuhr_s"></h2></td>
+        <td><h2 id="zuhr_i"></h2></td>
+        <!-- <td id="zuhr_e"></td> -->
+      </tr>
+      <tr>
+        <th scope="row"><h2>عصر / ASR</h2></th>
+        <td><h2 id="asr_s"></h2></td>
+        <td><h2 id="asr_i"></h2></td>
+        <!-- <td id="asr_e"></td> -->
+      </tr>
+      <tr>
+        <th scope="row"><h2>مغرب / MAGHRIB</h2></th>
+        <td><h2 id="maghrib_s"></h2></td>
+        <td><h2 id="maghrib_i"></h2></td>
+        <!-- <td id="maghrib_e"></td> -->
+      </tr>
+      <tr>
+        <th scope="row"><h2>عشاء /ISHA</h2></th>
+        <td><h2 id="esha_s"></h2></td>
+        <td><h2 id="esha_i"></h2></td>
+        <!-- <td id="esha_e"></td> -->
+      </tr>
+      <tr>
+        <th scope="row"><h2>جمعة /JUMA</h2></th>
+        <td><h2 id="juma_s"></h2></td>
+        <td><h2 id="juma_i"></h2></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <div style="color:rgb(85, 23, 23); background-color: rgb(47, 119, 47, 0.1); width: 97%; margin: auto;">
+    <marquee behavior="scroll" scrollamount="4" direction="right"
+      ><h2 footer id="no-fade"></h2
+    ></marquee>
+  </div> -->
+  <div class = "fade-it" style="color:rgb(85, 23, 23); background-color: rgb(47, 119, 47, 0.1); width: 97%; margin: auto;">
+    <marquee behavior="scroll" scrollamount="4" direction="right">
+        <h2 footer class="no-fade"></h2>
+        <h2 footer class="msg"></h2>
+    </marquee>
+  </div>
+
+  </div>
+
+  
+
+
+
+  <script>
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/data.csv');
+    xhr.onload = () => {
+      var data = xhr.responseText;
+
+    // data = fileContents;
+    // console.log('data' + data);
+
+      var time_for_today;
+      function CSVstring_to_Array(data, delimiter = ",") {
+        /* This variable will collect all the titles
+    from the data variable
+    ["Name", "Roll Number"] */
+
+        const titles = data.slice(0, data.indexOf("\n")).split(delimiter);
+
+        /* This variable will store the values
+    from the data
+    [ 'Rohan,01', 'Aryan,02' ] */
+        const titleValues = data.slice(data.indexOf("\n") + 1).split("\n");
+
+        /* Map function will itterate over all
+    values of title values array and
+    append each object at the end of
+    the array */
+        const ansArray = titleValues.map(function (v) {
+          /* Values variable will store individual
+        title values		
+        [ 'Rohan', '01' ] */
+          const values = v.split(delimiter);
+
+          /* storeKeyValue variable will store
+        object containing each title
+        with their respective values i.e
+        { Name: 'Rohan', 'Roll Number': '01' } */
+          const storeKeyValue = titles.reduce(function (obj, title, index) {
+            obj[title] = values[index];
+            return obj;
+          }, {});
+
+          return storeKeyValue;
+        });
+
+        return ansArray;
+      }
+
+      newData = CSVstring_to_Array(data);
+
+
+
+      // get current date
+      var date = new Date();
+      var dd = String(date.getDate()).padStart(2, "");
+      var mm = String(date.getMonth() + 1).padStart(2, ""); //January is 0!
+      var yyyy = date.getFullYear();
+
+      var today = mm + "/" + dd + "/" + yyyy;
+      // fakeDate =  "8" + "/" + "17" + "/" + "2012";
+
+      console.log(newData);
+      console.log(today);
+      for (var i = 0; i < newData.length; i++) {
+        if (newData[i]["d"] == dd && newData[i]["m"] == mm) {
+          // if (newData[i]["Date"] === fakeDate){
+          console.log("hi");
+          time_for_today = newData[i];
+        }
+      }
+
+
+      // convert date to arabic
+      function writeHijri(date, lang) {
+        var date = date || new Date();
+        lang = lang || "en";
+        var options = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        return date.toLocaleString(lang + "-u-ca-islamic", options);
+      }
+      islamicD = writeHijri(date, "ar");
+      var holder = islamicD.split(" ");
+      console.log(holder);
+      islamicD = "";
+      islamicD += holder [1] + ' ';
+      islamicD += holder [2] + ' - ';
+      islamicD += holder [0] + ' - ';
+      for (var i = 3; i < holder.length; i++){
+        islamicD +=  holder[i];
+      }
+
+
+      // html
+      console.log(time_for_today);
+      //   document.getElementById("date").innerHTML = `Date: ${today}`;
+      //   document.getElementById(
+      //     "day"
+      //   ).innerHTML = `Day: ${time_for_today["Day"]}`;
+
+      document.getElementById("hijriDate").innerHTML = `${islamicD}`;
+
+    
+
+      //time update
+
+      function display_ct5() {
+        var x = new Date();
+        var ampm = x.getHours() >= 12 ? " PM" : " AM";
+
+        var x1 = time_for_today["Day"] + " - ";
+        var real_time = "";
+        var real_date = "";
+        x1 += x.getMonth() + 1 + "/" + x.getDate() + "/" + x.getFullYear();
+        real_date += x.getMonth() + 1 + "/" + x.getDate() + "/" + x.getFullYear();
+        var hours = x.getHours();
+        if (x.getHours() > 12) {
+          x1 += " - " + (hours - 12);
+          real_time += (hours - 12);
+        } else if (x.getHours() === 0) {
+          x1 += " - " + 12;
+          real_time += 12;
+        } else {
+          x1 += " - " + x.getHours();
+          real_time += x.getHours();
+        }
+
+        if (x.getMinutes() < 10) {
+          x1 = x1 + ":" + "0" + x.getMinutes();
+          real_time += ":" + "0" + x.getMinutes();
+        } else {
+          x1 = x1 + ":" + x.getMinutes();
+          real_time += ":" + x.getMinutes();
+        }
+        if (x.getSeconds() < 10) {
+          x1 = x1 + ":" + "0" + x.getSeconds() + ampm;
+          real_time += ":" + "0" + x.getSeconds() + ampm;
+        } else {
+          x1 = x1 + ":" + x.getSeconds() + ampm;
+          real_time += ":" + x.getSeconds() + ampm;
+        }
+
+        // update time
+        document.getElementById("time").innerHTML = real_time;
+        // update date and day
+        
+
+        //update day
+        days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        document.getElementById("date").innerHTML = real_date;
+        document.getElementById("day").innerHTML = `${days[x.getDay()]}`;
+      
+      //   document.getElementById("ct5").innerHTML = x1;
+        display_c5();
+      }
+      function display_c5() {
+        var refresh = 1000; // Refresh rate in milli seconds
+        mytime = setTimeout("display_ct5()", refresh);
+      }
+      display_c5();
+
+      //zawal time
+
+      //sunrise / zawal time
+      document.getElementById("sunrise").innerHTML = `شروق / Sunrise: ${formation(
+          time_for_today["Shurooq"]
+        )}`;
+
+      document.getElementById("zawal").innerHTML = `زوال / Zawal: ${formation(
+        time_for_today["Zawal"]
+      )} - ${formation(time_for_today["ZawE"])}`;
+
+      //fajr
+      document.getElementById("fajr_s").innerHTML = `${formation(
+        time_for_today["Subah"]
+      )}`;
+      document.getElementById("fajr_i").innerHTML = `${formation(
+        time_for_today["Fajr"]
+      )}`;
+      // document.getElementById("fajr_e").innerHTML = `${time_for_today["Shurooq"]}`;
+      //zuhr
+      document.getElementById("zuhr_s").innerHTML = formation(
+        `${time_for_today["ZawE"]}`
+      );
+      document.getElementById("zuhr_i").innerHTML = formation(
+        `${time_for_today["Zuhr"]}`
+      );
+      // document.getElementById("zuhr_e").innerHTML = `${time_for_today["Asr_t"]}`;
+      //asar
+      document.getElementById("asr_s").innerHTML = formation(
+        `${time_for_today["Asr_t"]}`
+      );
+      document.getElementById("asr_i").innerHTML = formation(
+        `${time_for_today["Asr_Iqa"]}`
+      );
+      // document.getElementById("asr_e").innerHTML = `${time_for_today["Maghrib"]}`;
+      //maghrib
+      document.getElementById("maghrib_s").innerHTML = formation(
+        `${time_for_today["Maghrib"]}`
+      );
+      document.getElementById("maghrib_i").innerHTML = "+5 minutes";
+      // document.getElementById("esha_e").innerHTML = `${time_for_today["Shurooq"]}`;
+      //Esha
+      // changed the time
+      // var esha_time = parseInt(time_for_today["Isha_F"].split(":")[1]) + 1;
+      // esha_time = `${parseInt(
+      //   time_for_today["Isha_F"].split(":")[0]
+      // )}:${esha_time}`;
+      document.getElementById("esha_s").innerHTML = formation(`${time_for_today["Isha_F"]}`);
+      document.getElementById("esha_i").innerHTML = formation(
+        `${time_for_today["Isha_Iqam"]}`
+      );
+
+      // juma
+
+      document.getElementById("juma_s").innerHTML = formation(
+        `${time_for_today["ZawE"]}`
+      );
+
+      document.getElementById("juma_i").innerHTML = formation(
+        `${time_for_today["Juma"]}`
+      );
+
+      
+      if (time_for_today["Message"] === "") {
+          var y = document.getElementsByClassName("no-fade");
+          y[0].innerHTML = `** Also find timing in "Masjidi App" **`;
+      } else {
+          var x = document.getElementsByClassName("msg");
+          x[0].innerHTML = `${time_for_today["Message"]}`;
+      }
+
+      // function to make the time 12 format
+      function formation(time) {
+        // Check correct time format and split into components
+        var firstStr = time.split(":")[0];
+        if (parseInt(firstStr) < 12) {
+          return time + " AM";
+        }
+
+        time = time
+          .toString()
+          .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+        if (time.length > 1) {
+          // If time format correct
+          time = time.slice(1); // Remove full string match value
+          time[5] = +time[0] < 12 ? " AM" : " PM"; // Set AM/PM
+          time[0] = +time[0] % 12 || 12; // Adjust hours
+        }
+        return time.join(""); // return adjusted time or original string
+      }
+  };
+    xhr.send();
+
+    // refreshing the browser at certain time
+    function refreshAt(hours, minutes, seconds) {
+      var now = new Date();
+      var then = new Date();
+
+      if (
+        now.getHours() > hours ||
+        (now.getHours() == hours && now.getMinutes() > minutes) ||
+        (now.getHours() == hours &&
+          now.getMinutes() == minutes &&
+          now.getSeconds() >= seconds)
+      ) {
+        then.setDate(now.getDate() + 1);
+      }
+      then.setHours(hours);
+      then.setMinutes(minutes);
+      then.setSeconds(seconds);
+
+      var timeout = then.getTime() - now.getTime();
+      setTimeout(function () {
+        window.location.reload(true);
+      }, timeout);
+    }
+    refreshAt(23, 59, 59);
+    
+  </script>
+
+</body>
+</html>
